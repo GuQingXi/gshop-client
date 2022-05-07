@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 11:34:11
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-05 11:27:45
+ * @LastEditTime: 2022-05-05 17:41:04
  * @FilePath: \gshop-client\vue.config.js
  * @Description: 
  * 要加油
@@ -18,6 +18,7 @@ module.exports = defineConfig({
         target: "http://gmall-h5-api.atguigu.cn",//转发请求
         changeOrigin: true//支持跨域
       }
-    }
+    },
+    hot: true,
   }
 })

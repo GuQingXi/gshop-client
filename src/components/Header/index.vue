@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:18:03
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-04 16:25:55
+ * @LastEditTime: 2022-05-06 11:52:57
  * @FilePath: \gshop-client\src\components\Header\index.vue
  * @Description: 
  * 要加油
@@ -73,15 +73,13 @@ export default {
     Search() {
       const location = {
         name: "search",
+        query: this.$route.query, //将当前就有的query鞋带上
       };
       // 只有有数据时才携带params参数
       if (this.keyword) {
-        (location.params = {
+        location.params = {
           keyword: this.keyword,
-        }),
-          (location.query = {
-            keyword2: this.keyword.toUpperCase(),
-          });
+        };
       }
       // this.$router.push(location).catch(() => {});
       this.$router.push(location);

@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:26:20
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-04 19:29:14
+ * @LastEditTime: 2022-05-07 13:38:01
  * @FilePath: \gshop-client\src\pages\Home\Like\index.vue
  * @Description: 
  * 要加油
@@ -17,46 +17,11 @@
       </div>
       <div class="bd">
         <ul class="favourate">
-          <li>
-            <img src="../images/home/like_02.png" alt="" />
+          <li v-for="item in likes" :key="item.id">
+            <img :src="item.imgUrl" alt="" />
             <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
-            </div>
-          </li>
-          <li>
-            <img src="../images/home/like_03.png" alt="" />
-            <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
-            </div>
-          </li>
-          <li>
-            <img src="../images/home/like_01.png" alt="" />
-            <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
-            </div>
-          </li>
-          <li>
-            <img src="../images/home/like_02.png" alt="" />
-            <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
-            </div>
-          </li>
-          <li>
-            <img src="../images/home/like_03.png" alt="" />
-            <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
-            </div>
-          </li>
-          <li>
-            <img src="../images/home/like_01.png" alt="" />
-            <div class="like-text">
-              <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-              <h3>¥116.00</h3>
+              <p>{{ item.text }}</p>
+              <h3>¥{{ item.price }}</h3>
             </div>
           </li>
         </ul>
@@ -66,8 +31,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "isLike",
+  mounted() {
+    this.$store.dispatch("getMockLikes");
+  },
+  computed: {
+    ...mapState({
+      likes: (state) => state.home.likeList,
+    }),
+  },
 };
 </script>
 
