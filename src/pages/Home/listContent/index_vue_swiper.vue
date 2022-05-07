@@ -2,8 +2,8 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 17:37:49
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 18:55:06
- * @FilePath: \gshop-client\src\pages\Home\listContent\index.vue
+ * @LastEditTime: 2022-05-06 19:58:24
+ * @FilePath: \gshop-client\src\pages\Home\listContent\index_vue_swiper.vue
  * @Description: 
  * 要加油
  * 归属于顾清曦
@@ -13,24 +13,14 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <!-- <slide-show></slide-show> -->
-        <div class="swiper-container" ref="swiper">
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide"
-              v-for="banner in bannerList"
-              :key="banner.id"
-            >
-              <img :src="banner.imageUrl" />
-            </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
-
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
+        <swiper :options="swiperOptions">
+          <swiper-slide v-for="banner in bannerList" :key="banner.id">
+            <img :src="banner.imageUrl" />
+          </swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
       </div>
       <div class="right">
         <div class="news">
@@ -106,59 +96,34 @@
 </template>
 
 <script>
-import Swiper from "swiper";
 import { mapState } from "vuex";
-
 export default {
   name: "listContent",
-  mounted() {
-    /* new Swiper(this.$refs.swiper, {
-      // direction: "vertical", // 垂直切换选项
-      loop: true, // 循环模式选项
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false, //用户操作后是否停止自动轮播
+  data() {
+    return {
+      swiperOptions: {
+        // direction: "vertical", // 垂直切换选项
+        loop: true, // 循环模式选项
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false, //用户操作后是否停止自动轮播
+        },
+        // 如果需要分页器
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
       },
-      // 如果需要分页器
-      pagination: {
-        el: ".swiper-pagination",
-      },
-      // 如果需要前进后退按钮
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });*/
+    };
   },
   computed: {
     ...mapState({
       bannerList: (state) => state.home.bannerList,
     }),
-  },
-  watch: {
-    bannerList() {
-      //此时只是数据有了，但界面还没有更新
-      this.$nextTick(() => {
-        //在此次数据变化导致界面更新完成后执行回调
-        new Swiper(this.$refs.swiper, {
-          // direction: "vertical", // 垂直切换选项
-          loop: true, // 循环模式选项
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false, //用户操作后是否停止自动轮播
-          },
-          // 如果需要分页器
-          pagination: {
-            el: ".swiper-pagination",
-          },
-          // 如果需要前进后退按钮
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
-      });
-    },
   },
 };
 </script>

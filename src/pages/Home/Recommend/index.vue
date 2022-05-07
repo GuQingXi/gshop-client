@@ -2,8 +2,8 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 18:13:13
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-04 18:24:23
- * @FilePath: \gshop-client\src\pages\Home\Recom\index.vue
+ * @LastEditTime: 2022-05-07 12:43:28
+ * @FilePath: \gshop-client\src\pages\Home\Recommend\index.vue
  * @Description: 
  * 要加油
  * 归属于顾清曦
@@ -18,17 +18,8 @@
             <h3>今日推荐</h3>
           </div>
         </li>
-        <li class="banner">
-          <img src="../images/home/today01.png" />
-        </li>
-        <li class="banner">
-          <img src="../images/home/today02.png" />
-        </li>
-        <li class="banner">
-          <img src="../images/home/today03.png" />
-        </li>
-        <li class="banner">
-          <img src="../images/home/today04.png" />
+        <li class="banner" v-for="item in recommends" :key="item.id">
+          <img :src="item.imageUrl" />
         </li>
       </ul>
     </div>
@@ -36,7 +27,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "isRecommend",
+  props: ["recommends"],
+};
 </script>
 
 <style lang="less" scoped>

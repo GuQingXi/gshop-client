@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:31:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-04 17:09:46
+ * @LastEditTime: 2022-05-06 12:00:44
  * @FilePath: \gshop-client\src\router\routes.js
  * @Description: 
  * 要加油
@@ -25,8 +25,8 @@ export default [
         component: Search,
         // props: true 只映射params参数
         props: (route) => ({
-            keyword3: route.params.keyword,
-            Upkeyword: route.query.keyword2
+            keyword: route.params.keyword,
+            categoryName: route.query.categoryName
         })
     },
     {

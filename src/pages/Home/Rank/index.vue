@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:21:54
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-04 19:24:41
+ * @LastEditTime: 2022-05-07 13:26:43
  * @FilePath: \gshop-client\src\pages\Home\Rank\index.vue
  * @Description: 
  * 要加油
@@ -35,68 +35,17 @@
     <div class="content">
       <ul>
         <li>
-          <div class="img-item">
+          <div class="img-item" v-for="item in ranks" :key="item.id">
             <p class="tab-pic">
               <a href="#">
-                <img src="../images/home/1.jpg" />
+                <img :src="item.imgUrl" />
               </a>
             </p>
             <div class="tab-info">
               <div class="info-title">
-                <a href="#"
-                  >【官网价直降1100】Apple iPhone 8 Plus 256GB 银色
-                  移动联通电信4G手机</a
-                >
+                <a href="#"> {{ item.text }}</a>
               </div>
-              <p class="info-price">定金：¥100.00</p>
-            </div>
-          </div>
-          <div class="img-item">
-            <p class="tab-pic">
-              <a href="#">
-                <img src="../images/home/1.jpg" />
-              </a>
-            </p>
-            <div class="tab-info">
-              <div class="info-title">
-                <a href="#"
-                  >【官网价直降1100】Apple iPhone 8 Plus 256GB 银色
-                  移动联通电信4G手机</a
-                >
-              </div>
-              <p class="info-price">定金：¥100.00</p>
-            </div>
-          </div>
-          <div class="img-item">
-            <p class="tab-pic">
-              <a href="#">
-                <img src="../images/home/1.jpg" />
-              </a>
-            </p>
-            <div class="tab-info">
-              <div class="info-title">
-                <a href="#"
-                  >【官网价直降1100】Apple iPhone 8 Plus 256GB 银色
-                  移动联通电信4G手机</a
-                >
-              </div>
-              <p class="info-price">定金：¥100.00</p>
-            </div>
-          </div>
-          <div class="img-item">
-            <p class="tab-pic">
-              <a href="#">
-                <img src="../images/home/1.jpg" />
-              </a>
-            </p>
-            <div class="tab-info">
-              <div class="info-title">
-                <a href="#"
-                  >【官网价直降1100】Apple iPhone 8 Plus 256GB 银色
-                  移动联通电信4G手机</a
-                >
-              </div>
-              <p class="info-price">定金：¥100.00</p>
+              <p class="info-price">定金:￥{{ item.price }}</p>
             </div>
           </div>
         </li>
@@ -106,8 +55,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "isRank",
+  mounted() {
+    this.$store.dispatch("getmockRanks");
+  },
+  computed: {
+    ...mapState({
+      ranks: (state) => state.home.rankList,
+    }),
+  },
 };
 </script>
 

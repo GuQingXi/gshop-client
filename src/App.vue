@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 11:34:12
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-05 11:06:01
+ * @LastEditTime: 2022-05-07 11:51:42
  * @FilePath: \gshop-client\src\App.vue
  * @Description: 
  * 要加油
@@ -19,7 +19,6 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getCategoryList } from "@/api/index.js";
 export default {
   name: "App",
   components: {
@@ -28,11 +27,9 @@ export default {
   },
   mounted() {
     //异步获取三级分类列表
-    getCategoryList()
-      .then((result) => console.log(result))
-      .catch((error) => {
-        throw error;
-      });
+    this.$store.dispatch("getCategoryList");
+    // 获取轮播图
+    this.$store.dispatch("getBannerList");
   },
 };
 </script>

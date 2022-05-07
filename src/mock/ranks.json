@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "imgUrl": "/images/荣耀.jpg",
+        "text": "荣耀Play6T 6.74英寸高刷护眼屏 侧边指纹解锁 5000mAh大电池 全网通 5G",
+        "price": "400.00"
+    },
+    {
+        "id": "2",
+        "imgUrl": "/images/note9.png",
+        "text": "Redmi Note 9 Pro 5G 一亿像素 骁龙750G 33W快充 120Hz刷新率 湖光秋色 8GB+256GB 智能",
+        "price": "960.00"
+    },
+    {
+        "id": "3",
+        "imgUrl": "/images/x30.png",
+        "text": "荣耀X30 骁龙6nm疾速5G芯 66W超级快充 120Hz全视屏 全网通版 8GB+128GB 钛空银",
+        "price": "500.00"
+    },
+    {
+        "id": "4",
+        "imgUrl": "/images/iqoo.png",
+        "text": "vivo iQOO Neo6 12GB+256GB 黑爵 全新一代骁龙8 独立显示芯片Pro 双电芯80W闪充 双模5G全网通",
+        "price": "1000.00"
+    }
+]
