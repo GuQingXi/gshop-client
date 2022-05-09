@@ -3,9 +3,13 @@
  * @Date: 2022-05-04 11:34:12
  * @LastEditors: 顾清曦
 <<<<<<< HEAD
- * @LastEditTime: 2022-05-05 11:48:27
+<<<<<<< HEAD
+ * @LastEditTime: 2022-05-09 13:42:29
 =======
  * @LastEditTime: 2022-05-07 11:51:42
+>>>>>>> guqingxi
+=======
+ * @LastEditTime: 2022-05-07 23:51:07
 >>>>>>> guqingxi
  * @FilePath: \gshop-client\src\App.vue
  * @Description: 
@@ -14,7 +18,7 @@
 -->
 <template>
   <div id="app">
-    <Header></Header>
+    <Header v-show="!$route.meta.isHideFooter"></Header>
     <router-view></router-view>
     <Footer v-show="!$route.meta.isHideFooter"></Footer>
   </div>
@@ -29,15 +33,12 @@ export default {
     Header,
     Footer,
   },
-<<<<<<< HEAD
-=======
   mounted() {
     //异步获取三级分类列表
     this.$store.dispatch("getCategoryList");
     // 获取轮播图
     this.$store.dispatch("getBannerList");
   },
->>>>>>> guqingxi
 };
 </script>
 

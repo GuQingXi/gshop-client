@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:58:19
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 13:29:12
+ * @LastEditTime: 2022-05-07 14:51:07
  * @FilePath: \gshop-client\src\api\index.js
  * @Description
  * 要加油
@@ -35,6 +35,15 @@ export function reqBannerList() {
         method: 'GET',
     })
 }
+// 搜索商品列表 
+export function reqCommodityList(searchParams) {
+    return request({
+        url: '/list',
+        method: 'POST',
+        data: searchParams
+    })
+
+}
 
 
 // mock接口函数
@@ -54,6 +63,3 @@ export const reqMockRans = () => {
 export const reqMockLikes = () => {
     return MockAjax('/likes')
 }
-reqMockLikes().then((res) => {
-    console.log(res)
-})

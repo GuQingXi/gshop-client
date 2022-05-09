@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nav></Nav>
+    <Nav />
     <div class="main">
       <div class="py-container">
         <!--面包屑-->
@@ -17,53 +17,22 @@
             <li class="with-x" v-show="options.keyword">
               {{ options.keyword }}<i @click="removeKeyword">×</i>
             </li>
-            <li class="with-x" v-show="options.trademark">
-              {{ options.trademark }}<i @click="removeTrademark">×</i>
-            </li>
-            <li
-              class="with-x"
-              v-for="(prop, index) in options.props"
-              :key="prop"
-            >
-              {{ prop }}<i @click="removeProp(index)">×</i>
-            </li>
           </ul>
         </div>
 
         <!--筛选组件-->
-        <SearchSelector :setTrademark="setTrademark" @addProp="addProp" />
+        <SearchSelector />
 
         <div class="details clearfix">
           <!--排序选项列表-->
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <!-- 红色选中背景 判断order中的第一个值是否为1 为1显示综合排序 -->
-                <li
-                  :class="{ active: orderArr[0] === '1' }"
-                  @click="setOrder('1')"
-                >
-                  <a href="javascript:;">
-                    综合
-                    <i
-                      class="iconfont"
-                      :class="orderArr[1] === 'desc' ? 'icon-down' : 'icon-up'"
-                      v-if="orderArr[0] === '1'"
-                    ></i>
-                  </a>
+                <li class="active">
+                  <a href="#">综合</a>
                 </li>
-                <li
-                  :class="{ active: orderArr[0] === '3' }"
-                  @click="setOrder('3')"
-                >
-                  <a href="javascript:;"
-                    >销量
-                    <i
-                      class="iconfont"
-                      :class="orderArr[1] === 'desc' ? 'icon-down' : 'icon-up'"
-                      v-if="orderArr[0] === '3'"
-                    ></i>
-                  </a>
+                <li>
+                  <a href="#">销量</a>
                 </li>
                 <li>
                   <a href="#">新品</a>
@@ -71,18 +40,11 @@
                 <li>
                   <a href="#">评价</a>
                 </li>
-                <li
-                  :class="{ active: orderArr[0] === '2' }"
-                  @click="setOrder('2')"
-                >
-                  <a href="javascript:;">
-                    价格
-                    <i
-                      class="iconfont"
-                      :class="orderArr[1] === 'desc' ? 'icon-down' : 'icon-up'"
-                      v-if="orderArr[0] === '2'"
-                    ></i>
-                  </a>
+                <li>
+                  <a href="#">价格⬆</a>
+                </li>
+                <li>
+                  <a href="#">价格⬇</a>
                 </li>
               </ul>
             </div>
@@ -123,13 +85,35 @@
             </ul>
           </div>
           <!-- 分页 -->
-          <Pagination
-            :currentPage="options.pageNo"
-            :pageSize="options.pageSize"
-            :total="total"
-            :showPageNo="3"
-            @currentChange="getGoodsList"
-          />
+          <div class="fr page">
+            <div class="sui-pagination clearfix">
+              <ul>
+                <li class="prev disabled">
+                  <a href="#">«上一页</a>
+                </li>
+                <li class="active">
+                  <a href="#">1</a>
+                </li>
+                <li>
+                  <a href="#">2</a>
+                </li>
+                <li>
+                  <a href="#">3</a>
+                </li>
+                <li>
+                  <a href="#">4</a>
+                </li>
+                <li>
+                  <a href="#">5</a>
+                </li>
+                <li class="dotted"><span>...</span></li>
+                <li class="next">
+                  <a href="#">下一页»</a>
+                </li>
+              </ul>
+              <div><span>共10页&nbsp;</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -144,17 +128,17 @@ export default {
   data() {
     return {
       options: {
-        category1Id: "",
-        category2Id: "",
-        category3Id: "",
-        categoryName: "",
+        category1Id: "", //一级分类ID
+        category2Id: "", //二级分类ID
+        category3Id: "", //三级分类ID
+        categoryName: "", //	分类名称
 
-        keyword: "",
-        props: [], //属性数据
-        // trademark: "", //品牌数据
+        keyword: "", //搜索关键字
+        props: [], //商品属性的数组: ["属性ID:属性值:属性名"]示例: ["2:6.0～6.24英寸:屏幕尺寸"]
+        trademark: "", //品牌: "ID:品牌名称"示例: "1:苹果"
 
-        order: "1:desc", //条件数据 排序方式 1：综合，2：价格 asc：升序， desc：降序
-        pageNo: 4, //页码
+        order: "", //排序方式 1: 综合,2: 价格 asc: 升序,desc: 降序 示例: "1:desc"
+        pageNo: 1, //页码
         pageSize: 5, //每页数量
       },
     };
@@ -162,26 +146,16 @@ export default {
   components: {
     SearchSelector,
   },
-  // created() {
-  //   this.updateParams();
-  //   this.getGoodsList();
-  // },
-  computed: {
-    ...mapGetters(["goodsList", "total"]),
-    orderArr() {
-      // 得到包含当前分类项标识(orderFlag)和排序(orderType)方式的数组
-      return this.options.order.split(":");
-    },
-  },
   methods: {
-    // 更新请求数据
+    // 更新options中的参数属性
     updateParams() {
+      // 取出参数数据
       const { keyword } = this.$route.params;
       const { category1Id, category2Id, category3Id, categoryName } =
         this.$route.query;
+      // 保存到options中
       this.options = {
-        //将数据更新
-        ...this.options,
+        ...this.options, //先将options里面的数据全部展开到这个对象中
         keyword,
         category1Id,
         category2Id,
@@ -189,96 +163,43 @@ export default {
         categoryName,
       };
     },
-    // 异步发送请求
-    getGoodsList(page = 1) {
-      this.options.pageNo = page;
+    // 异步获取商品列表
+    getShopList() {
+      // 发送搜索请求
       this.$store.dispatch("getProductList", this.options);
     },
-    // 删除query参数跳转路由更新面包屑
+    // 删除分类条件
     removeCategory() {
+      // 更新分类相关数据
       this.options.category1Id = "";
-      this.options.category2Id = "";
-      this.options.category3Id = "";
+      this.options.category1Id = "";
+      this.options.category1Id = "";
       this.options.categoryName = "";
-      this.$router.replace({
+      // 重新跳转
+      this.$router.push({
         name: "search",
         params: this.$route.params,
       });
     },
-    // 删除params参数更新面包屑
+    // 删除关键字条件
     removeKeyword() {
       this.options.keyword = "";
-      this.$router.replace({
-        //路由跳转会自动发请求
+      this.$router.push({
         name: "search",
-        query: this.$route.query,
+        query: this.$router.query,
       });
-      // 清除header组件中的keyword
-      this.$bus.$emit("removeKeyword");
     },
-    // 添加品牌数据
-    setTrademark(trade) {
-      // 如果当前品牌已经在条件中了，直接结束
-      if (trade === this.options.trademark) return;
-      // 将数据传入options中
-      // this.options.trademark = trade;
-
-      this.$set(this.options, "trademark", trade);
-      // 发送请求
-      this.getGoodsList();
-    },
-    // 删除品牌面包屑
-    removeTrademark() {
-      // 重置品牌条件数据
-      // this.options.trademark = "";
-      this.$delete(this.options, "trademark");
-      this.getGoodsList();
-    },
-    // 添加一个属性条件
-    addProp(prop) {
-      const { props } = this.options;
-      if (props.includes(prop)) return; //includes方法用来判断一个数组是否包含一个指定的值 如果为true代表包含
-      props.push(prop);
-      this.getGoodsList();
-    },
-    // 删除一个属性条件
-    removeProp(index) {
-      // 删除props 中index的元素
-      this.options.props.splice(index, 1);
-      this.getGoodsList();
-    },
-    // 设置新的排序搜索方式
-    setOrder(orderFlag) {
-      // 得到当前的排序项和排序方式 flag:1 type:desc
-      let [flag, type] = this.orderArr;
-      // 点击当前排序项只需要改变orderType的值
-      if (orderFlag === flag) {
-        type = type === "desc" ? "asc" : "desc";
-      } else {
-        flag = orderFlag;
-        type = "desc";
-      }
-      this.options.order = flag + ":" + type;
-      this.getGoodsList();
-    },
-    // 当前的页码发生改变的事件回调
-    // currentChange(page) {
-    //   this.options.pageNo = page;
-    //   this.getGoodsList();
-    // },
+  },
+  computed: {
+    ...mapGetters(["goodsList"]),
   },
   watch: {
-    /*$route() {
-      //监视路由状态变化
-      this.updateParams();
-      this.getGoodsList();
-    },*/
     $route: {
       handler() {
         this.updateParams();
-        this.getGoodsList();
+        this.getShopList();
       },
-      immediate: true, //初始化立即执行第一次
+      immediate: true,
     },
   },
 };

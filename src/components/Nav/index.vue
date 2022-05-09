@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 17:34:52
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 12:03:36
+ * @LastEditTime: 2022-05-07 23:17:48
  * @FilePath: \gshop-client\src\components\Nav\index.vue
  * @Description: 
  * 要加油
@@ -132,6 +132,7 @@ export default {
       this.isShow = true;
     },
     toSearch(event) {
+      // 事件委派实现点击a标签携带参数并跳转
       const target = event.target;
       const { categoryname, category1id, category2id, category3id } =
         target.dataset;
@@ -146,11 +147,23 @@ export default {
         } else if (category3id) {
           query.category3Id = category3id;
         }
-        this.$router.push({
-          name: "search",
-          query,
-          params: this.$route.params, //需要携带上当前已有的params参数
-        });
+        if (this.$route.name === "search") {
+          //当前是搜索
+          this.$router.replace({
+            name: "search",
+            query,
+            params: this.$route.params, //需要携带上当前已有的params参数
+          });
+        } else {
+          this.$router.push({
+            name: "search",
+            query,
+            params: this.$route.params, //需要携带上当前已有的params参数
+          });
+        }
+
+        //隐藏商品分类列表
+        this.hideFirst();
       }
     },
     // 显示指定下标的子分类列表 并用lodash节流
