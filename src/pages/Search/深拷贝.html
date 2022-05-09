@@ -1,0 +1,43 @@
+<!--
+ * @Author: 顾清曦
+ * @Date: 2022-05-08 00:06:05
+ * @LastEditors: 顾清曦
+ * @LastEditTime: 2022-05-08 14:05:15
+ * @FilePath: \gshop-client\src\pages\Search\深拷贝.html
+ * @Description: 
+ * 要加油
+ * 归属于顾清曦
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let a = b = 10
+            ; (function () {
+                let a = b = 20
+            })()
+        console.log(a);
+        console.log(b);
+
+        let arr = [1, 2, 3]
+        arr[10] = 10
+        console.log(arr.filter(x => {
+            return x === null;
+        }))
+        let Obj = {
+            a: 1,
+            name: 'wyc',
+            b: [1, 2, 3]
+        }
+
+
+    </script>
+</body>
+
+</html>

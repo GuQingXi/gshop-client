@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 11:34:12
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 11:51:42
+ * @LastEditTime: 2022-05-07 23:51:07
  * @FilePath: \gshop-client\src\App.vue
  * @Description: 
  * 要加油
@@ -10,7 +10,7 @@
 -->
 <template>
   <div id="app">
-    <Header></Header>
+    <Header v-show="!$route.meta.isHideFooter"></Header>
     <router-view></router-view>
     <Footer v-show="!$route.meta.isHideFooter"></Footer>
   </div>

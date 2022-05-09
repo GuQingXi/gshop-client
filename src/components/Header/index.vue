@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:18:03
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 11:52:57
+ * @LastEditTime: 2022-05-07 23:26:27
  * @FilePath: \gshop-client\src\components\Header\index.vue
  * @Description: 
  * 要加油
@@ -69,6 +69,12 @@ export default {
       keyword: "",
     };
   },
+  mounted() {
+    // 在header中绑定自定义事件监听，在回调中清除数据
+    this.$bus.$on("removeKeyword", () => {
+      this.keyword = "";
+    });
+  },
   methods: {
     Search() {
       const location = {
@@ -82,9 +88,16 @@ export default {
         };
       }
       // this.$router.push(location).catch(() => {});
-      this.$router.push(location);
-      this.keyword = "";
+      if (this.$route.name === "search") {
+        this.$router.replace(location);
+      } else {
+        this.$router.push(location);
+      }
     },
+  },
+  beforeDestroy() {
+    // 解绑事件监听
+    this.$bus.$off("removeKeyword");
   },
 };
 </script>
