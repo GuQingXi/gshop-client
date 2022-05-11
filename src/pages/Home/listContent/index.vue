@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 17:37:49
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 18:55:06
+ * @LastEditTime: 2022-05-11 11:51:33
  * @FilePath: \gshop-client\src\pages\Home\listContent\index.vue
  * @Description: 
  * 要加油
@@ -98,7 +98,7 @@
           </li>
         </ul>
         <div class="ads">
-          <img src="../images/home/ad1.png" />
+          <img src="../../../assets/ad1.png" />
         </div>
       </div>
     </div>
@@ -108,6 +108,7 @@
 <script>
 import Swiper from "swiper";
 import { mapState } from "vuex";
+import "../../../assets/ad1.png";
 
 export default {
   name: "listContent",
@@ -234,7 +235,7 @@ export default {
           width: 25%;
 
           .list-item {
-            background-image: url(../images/home/icons.png);
+            background-image: url(../../../assets/icons.png);
             width: 61px;
             height: 40px;
             display: block;

@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 17:37:49
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 19:58:24
+ * @LastEditTime: 2022-05-11 11:55:02
  * @FilePath: \gshop-client\src\pages\Home\listContent\index_vue_swiper.vue
  * @Description: 
  * 要加油
@@ -88,7 +88,7 @@
           </li>
         </ul>
         <div class="ads">
-          <img src="../images/home/ad1.png" />
+          <!-- <img src="../images/home/ad1.png" /> -->
         </div>
       </div>
     </div>
@@ -100,6 +100,7 @@ import { mapState } from "vuex";
 export default {
   name: "listContent",
   data() {
+    loop;
     return {
       swiperOptions: {
         // direction: "vertical", // 垂直切换选项
@@ -199,7 +200,7 @@ export default {
           width: 25%;
 
           .list-item {
-            background-image: url(../images/home/icons.png);
+            // background-image: url(../../../);
             width: 61px;
             height: 40px;
             display: block;

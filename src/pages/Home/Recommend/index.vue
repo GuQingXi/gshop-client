@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 18:13:13
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 12:43:28
+ * @LastEditTime: 2022-05-11 11:46:25
  * @FilePath: \gshop-client\src\pages\Home\Recommend\index.vue
  * @Description: 
  * 要加油
@@ -14,7 +14,9 @@
       <ul class="recommend">
         <li class="clock">
           <div class="time">
-            <img src="../images/home/clock.png" />
+            <!-- <img src="../../assets/clock.png" /> -->
+            <!-- <img src="../../assets/clock.png" alt="" /> -->
+            <img src="../../../assets/clock.png" alt="" />
             <h3>今日推荐</h3>
           </div>
         </li>

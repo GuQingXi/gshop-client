@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:21:54
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 13:26:43
+ * @LastEditTime: 2022-05-11 11:43:43
  * @FilePath: \gshop-client\src\pages\Home\Rank\index.vue
  * @Description: 
  * 要加油
@@ -99,7 +99,7 @@ export default {
             width: 35px;
             height: 35px;
             display: block;
-            background: url(../images/home/bg0.png);
+            background: url(../../../assets/bg0.png);
             margin-left: 10px;
           }
         }

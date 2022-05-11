@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-05 11:43:02
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-05 18:23:48
+ * @LastEditTime: 2022-05-11 10:38:28
  * @FilePath: \gshop-client\src\api\request.js
  * @Description: 
  * 要加油
@@ -18,12 +18,14 @@
 import axios from "axios"
 import NProgress from "nprogress"
 import 'nprogress/nprogress.css'
+import store from "@/store"
+
 
 // 1. 配置通用的基础路径和超时
 // instance是一个能发任意Ajax请求的函数，当然可以作为对象使用
 const instance = axios.create({
     baseURL: '/api',//基础路径
-    timeout: 15000
+    timeout: 15000,
 })
 
 // 添加请求拦截器
@@ -31,6 +33,10 @@ instance.interceptors.request.use(function (config) {
     // 在发送请求之前做什么
     // 2. 显示请求进度条
     NProgress.start()
+    let userTempId = store.state.user.userTempId
+    if (userTempId) {
+        config.headers.userTempId = userTempId
+    }
 
     // 必须返回config
     return config

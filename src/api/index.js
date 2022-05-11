@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:58:19
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-10 20:30:37
+ * @LastEditTime: 2022-05-11 11:12:42
  * @FilePath: \gshop-client\src\api\index.js
  * @Description
  * 要加油
@@ -55,6 +55,14 @@ export function reqAddOrUpdateCart(skuId, skuNum,) {
     return request({
         url: `/cart/addToCart/${skuId}/${skuNum}`,
         method: 'POST'
+    })
+}
+// 获取购物车列表 /api/cart/cartList
+export function reqCartList() {
+    return request({
+        url: '/cart/cartList',
+        // url: 'http://127.0.0.1:8000/cartlist',
+        method: 'GET',
     })
 }
 
