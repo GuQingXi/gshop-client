@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-08 17:33:51
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-09 13:00:20
+ * @LastEditTime: 2022-05-10 10:09:19
  * @FilePath: \gshop-client\src\components\Pagination\index.vue
  * @Description: 
  * 要加油
@@ -20,14 +20,15 @@
     <button v-if="startEnd.start !== 1" @click="setCurrentPage(1)">1</button>
     <button class="disabled" v-if="startEnd.start > 2">...</button>
 
-    <!-- 
-      多执行了从1到start-1的遍历和v-if的判断
-      <button
+    <!-- 多执行了从1到start-1的遍历和v-if的判断 -->
+    <!-- <button
       v-for="item in startEnd.end"
       v-if="item >= startEnd.start"
       :class="{ active: item === myCurrentPage }"
       @click="setCurrentPage(item)"
-    > -->
+    >
+      {{ item }}
+    </button> -->
     <button
       v-for="item in startEndArr"
       :key="item"
@@ -36,6 +37,7 @@
     >
       {{ item }}
     </button>
+
     <!-- <button>4</button>
     <button class="active">5</button>
     <button>6</button>
@@ -104,7 +106,7 @@ export default {
     startEndArr() {
       // 包含从start到End的数组
       const arr = [];
-      const { start, end } = this;
+      const { start, end } = this.startEnd;
       for (let i = start; i <= end; i++) {
         arr.push(i);
       }

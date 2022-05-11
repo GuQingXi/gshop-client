@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:12:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 22:59:31
+ * @LastEditTime: 2022-05-10 11:04:29
  * @FilePath: \gshop-client\src\router\index.js
  * @Description: 
  * 要加油
@@ -52,5 +52,9 @@ VueRouter.prototype.replace = function (location, onReslove, onReject) {
 export default new VueRouter({
     // 模式
     mode: 'history',
-    routes
+    routes,
+    scrollBehavior() {
+        // 始终滚动到顶部
+        return { x: 0, y: 0 }
+    },
 })

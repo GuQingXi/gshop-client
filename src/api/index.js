@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:58:19
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 14:51:07
+ * @LastEditTime: 2022-05-10 20:30:37
  * @FilePath: \gshop-client\src\api\index.js
  * @Description
  * 要加油
@@ -42,7 +42,20 @@ export function reqCommodityList(searchParams) {
         method: 'POST',
         data: searchParams
     })
-
+}
+//  获取商品详情
+export function reqDetailInfo(skuId) {
+    return request({
+        url: '/item/' + skuId,
+        method: 'GET',
+    })
+}
+// 添加购物车（修改购物车的商品数量）cart/addToCart/{ skuId }/{ skuNum }
+export function reqAddOrUpdateCart(skuId, skuNum,) {
+    return request({
+        url: `/cart/addToCart/${skuId}/${skuNum}`,
+        method: 'POST'
+    })
 }
 
 
