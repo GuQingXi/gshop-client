@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:18:03
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 23:26:27
+ * @LastEditTime: 2022-05-11 11:17:49
  * @FilePath: \gshop-client\src\components\Header\index.vue
  * @Description: 
  * 要加油
@@ -17,8 +17,10 @@
           <p>尚品汇欢迎您！</p>
           <p>
             <span>请</span>
-            <a href="###">登录</a>
-            <a href="###" class="register">免费注册</a>
+            <a href="javascript:;" @click="toLogin">登录</a>
+            <a href="javascript:;" class="register" @click="toRegister"
+              >免费注册</a
+            >
           </p>
         </div>
         <div class="typeList">
@@ -93,6 +95,12 @@ export default {
       } else {
         this.$router.push(location);
       }
+    },
+    toLogin() {
+      this.$router.push("/login");
+    },
+    toRegister() {
+      this.$router.push("/register");
     },
   },
   beforeDestroy() {

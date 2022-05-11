@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:26:20
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 13:38:01
+ * @LastEditTime: 2022-05-11 11:43:23
  * @FilePath: \gshop-client\src\pages\Home\Like\index.vue
  * @Description: 
  * 要加油
@@ -64,7 +64,7 @@ export default {
 
       .fr {
         float: right;
-        background-image: url(../images/home/icons.png);
+        background-image: url(../../../assets/icons.png);
         width: 66px;
         height: 25px;
         background-position: 182px -104px;

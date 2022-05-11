@@ -15,8 +15,10 @@
           </div>
         </div>
         <div class="right-gocart">
-          <a href="javascript:" class="sui-btn btn-xlarge">查看商品详情</a>
-          <a href="javascript:">去购物车结算 > </a>
+          <a href="javascript:" class="sui-btn btn-xlarge" @click="toDetail"
+            >查看商品详情</a
+          >
+          <a href="javascript:" @click="shopcart">去购物车结算 > </a>
         </div>
       </div>
     </div>
@@ -35,6 +37,19 @@ export default {
   beforeMount() {
     this.skuInfo = JSON.parse(sessionStorage.getItem("SKUINFO_KEY"));
     this.skuNum = this.$route.query.skuNum;
+  },
+  methods: {
+    toDetail() {
+      this.$router.push({
+        name: "detail",
+        params: {
+          skuId: this.skuInfo.id,
+        },
+      });
+    },
+    shopcart() {
+      this.$router.push("/shopcart");
+    },
   },
 };
 </script>
