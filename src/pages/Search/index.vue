@@ -183,8 +183,12 @@ export default {
   },
   methods: {
     toDetail(id) {
-      this.$router.push("/detail/" + id);
-      this.$store.dispatch("getSkuDetailInfo", id);
+      this.$router.push({
+        name: "detail",
+        params: {
+          skuId: id,
+        },
+      });
     },
     // 更新请求数据
     updateParams() {
