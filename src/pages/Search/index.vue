@@ -93,7 +93,11 @@
               <li class="yui3-u-1-5" v-for="item in goodsList" :key="item.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="javascript:;"> <img :src="item.defaultImg" /></a>
+                    <!-- <router-link :to="'/detail/' + item.id"> -->
+                    <a href="javascript:;" @click="toDetail(item.id)">
+                      <img :src="item.defaultImg" />
+                    </a>
+                    <!-- </router-link> -->
                   </div>
                   <div class="price">
                     <strong>
@@ -102,7 +106,11 @@
                     </strong>
                   </div>
                   <div class="attr">
-                    <a href="javascript:;">{{ item.title }}</a>
+                    <a href="javascript:;" @click="toDetail(item.id)">
+                      <!-- <router-link :to="'/detail/' + item.id"> -->
+                      {{ item.title }}
+                    </a>
+                    <!-- </router-link> -->
                   </div>
                   <div class="commit">
                     <i class="command">已有<span>2000</span>人评价</i>
@@ -127,7 +135,7 @@
             :currentPage="options.pageNo"
             :pageSize="options.pageSize"
             :total="total"
-            :showPageNo="3"
+            :showPageNo="5"
             @currentChange="getGoodsList"
           />
         </div>
@@ -154,7 +162,7 @@ export default {
         // trademark: "", //品牌数据
 
         order: "1:desc", //条件数据 排序方式 1：综合，2：价格 asc：升序， desc：降序
-        pageNo: 4, //页码
+        pageNo: 1, //页码
         pageSize: 5, //每页数量
       },
     };
@@ -174,6 +182,10 @@ export default {
     },
   },
   methods: {
+    toDetail(id) {
+      this.$router.push("/detail/" + id);
+      this.$store.dispatch("getSkuDetailInfo", id);
+    },
     // 更新请求数据
     updateParams() {
       const { keyword } = this.$route.params;

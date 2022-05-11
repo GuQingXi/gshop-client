@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-05 11:43:03
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 14:38:16
+ * @LastEditTime: 2022-05-10 19:02:11
  * @FilePath: \gshop-client\src\store\index.js
  * @Description: 
  * 要加油
@@ -13,6 +13,8 @@ import Vuex from 'vuex'
 import home from './modules/home'
 import user from './modules/user'
 import search from './modules/search'
+import detail from './modules/detail'
+import shopcart from './modules/shopcart'
 Vue.use(Vuex)
 
 const state = {}//存放数据
@@ -28,6 +30,8 @@ export default new Vuex.Store({
     modules: {
         home,
         user,
-        search
+        search,
+        detail,
+        shopcart
     }
 })

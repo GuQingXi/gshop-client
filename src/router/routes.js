@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:31:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-06 12:00:44
+ * @LastEditTime: 2022-05-10 20:39:29
  * @FilePath: \gshop-client\src\router\routes.js
  * @Description: 
  * 要加油
@@ -44,5 +44,15 @@ export default [
         meta: {
             isHideFooter: true
         }
+    },
+    {
+        path: '/detail/:skuId',
+        name: 'detail',
+        component: () => import('../pages/Detail')
+    },
+    {
+        path: '/addcartsuccess',
+        name: "addcartsuccess",
+        component: () => import('../pages/AddCartSuccess')
     }
 ]
