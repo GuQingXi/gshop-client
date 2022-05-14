@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:21:54
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 11:43:43
+ * @LastEditTime: 2022-05-12 13:41:40
  * @FilePath: \gshop-client\src\pages\Home\Rank\index.vue
  * @Description: 
  * 要加油
@@ -37,13 +37,13 @@
         <li>
           <div class="img-item" v-for="item in ranks" :key="item.id">
             <p class="tab-pic">
-              <a href="#">
+              <a href="javascript:;">
                 <img :src="item.imgUrl" />
               </a>
             </p>
             <div class="tab-info">
               <div class="info-title">
-                <a href="#"> {{ item.text }}</a>
+                <a href="javascript:;"> {{ item.text }}</a>
               </div>
               <p class="info-price">定金:￥{{ item.price }}</p>
             </div>

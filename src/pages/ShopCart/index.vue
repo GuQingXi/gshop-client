@@ -11,19 +11,18 @@
         <div class="cart-th6">操作</div>
       </div>
       <div class="cart-body">
-        <ul class="cart-list">
+        <ul class="cart-list" v-for="item in cartList" :key="item.id">
           <li class="cart-list-con1">
             <input type="checkbox" name="chk_list" />
           </li>
           <li class="cart-list-con2">
-            <img src="./images/goods1.png" />
+            <img :src="item.imgUrl" />
             <div class="item-msg">
-              米家（MIJIA） 小米小白智能摄像机增强版
-              1080p高清360度全景拍摄AI增强
+              {{ item.skuName }}
             </div>
           </li>
           <li class="cart-list-con4">
-            <span class="price">399.00</span>
+            <span class="price">{{ item.skuPrice }}</span>
           </li>
           <li class="cart-list-con5">
             <a href="javascript:void(0)" class="mins">-</a>
@@ -64,7 +63,8 @@
           <i class="summoney">0</i>
         </div>
         <div class="sumbtn">
-          <a class="sum-btn" href="###" target="_blank">结算</a>
+          <!-- <a class="sum-btn" href="###" target="_blank">结算</a> -->
+          <router-link class="sum-btn" to="/trade">结算</router-link>
         </div>
       </div>
     </div>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "ShopCart",
   mounted() {
@@ -81,6 +82,9 @@ export default {
     getCartList() {
       this.$store.dispatch("getCartList");
     },
+  },
+  computed: {
+    ...mapGetters(["cartList"]),
   },
 };
 </script>

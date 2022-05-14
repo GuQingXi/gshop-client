@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:18:03
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 11:17:49
+ * @LastEditTime: 2022-05-12 20:47:02
  * @FilePath: \gshop-client\src\components\Header\index.vue
  * @Description: 
  * 要加油
@@ -15,7 +15,14 @@
       <div class="container">
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
-          <p>
+          <p v-if="$store.state.user.userInfo.name">
+            <!-- <a href="javascript:;">用户名：</a> -->
+            <a href="javascript:;" @click="toRegister">
+              {{ $store.state.user.userInfo.name }}
+            </a>
+            <a href="javascript:;" class="register" @click="logout">退出登录</a>
+          </p>
+          <p v-else>
             <span>请</span>
             <a href="javascript:;" @click="toLogin">登录</a>
             <a href="javascript:;" class="register" @click="toRegister"
@@ -25,8 +32,10 @@
         </div>
         <div class="typeList">
           <a href="###">我的订单</a>
-          <a href="###">我的购物车</a>
-          <a href="###">我的尚品汇</a>
+          <!-- <a href="###">我的购物车</a> -->
+          <router-link to="/shopcart">我的购物车</router-link>
+          <!-- <a href="###">我的尚品汇</a> -->
+          <router-link to="/">我的尚品汇</router-link>
           <a href="###">尚品汇会员</a>
           <a href="###">企业采购</a>
           <a href="###">关注尚品汇</a>
@@ -78,6 +87,15 @@ export default {
     });
   },
   methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch("getUserLogout");
+        alert("退出成功");
+        this.$router.push("/");
+      } catch (error) {
+        alert(error);
+      }
+    },
     Search() {
       const location = {
         name: "search",

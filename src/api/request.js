@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-05 11:43:02
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 10:38:28
+ * @LastEditTime: 2022-05-12 21:02:05
  * @FilePath: \gshop-client\src\api\request.js
  * @Description: 
  * 要加油
@@ -26,6 +26,7 @@ import store from "@/store"
 const instance = axios.create({
     baseURL: '/api',//基础路径
     timeout: 15000,
+    headers: { 'LastEditors': 'Guqingxi' }//将所有带有api的接口上携带此请求头
 })
 
 // 添加请求拦截器
@@ -33,9 +34,16 @@ instance.interceptors.request.use(function (config) {
     // 在发送请求之前做什么
     // 2. 显示请求进度条
     NProgress.start()
+    // 携带临时标识
     let userTempId = store.state.user.userTempId
     if (userTempId) {
         config.headers.userTempId = userTempId
+    }
+
+    // 携带登录后标识token
+    let token = store.state.user.token
+    if (token) {
+        config.headers.token = token
     }
 
     // 必须返回config
@@ -55,7 +63,6 @@ instance.interceptors.response.use(
         // 结束请求进度条
         NProgress.done()
 
-        alert(error.message)
         // throw error
         return Promise.reject(error)
     }

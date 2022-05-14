@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-06 22:10:31
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-07 13:29:25
+ * @LastEditTime: 2022-05-13 12:27:13
  * @FilePath: \gshop-client\src\mock\mockServer\index.js
  * @Description: 
  * 要加油
@@ -14,6 +14,7 @@ import floor from '../floors.json'
 import recomments from "../recomments.json";
 import ranks from "../ranks.json";
 import likes from "../likes.json";
+import address from '../address.json'
 
 //提供今日推荐接口  第一个参数是路径 
 Mock.mock('/mock/recomments', { code: 200, data: recomments })
@@ -24,3 +25,6 @@ Mock.mock('/mock/floors', { code: 200, data: floor })
 Mock.mock('/mock/ranks', { code: 200, data: ranks })
 // 获取猜你喜欢接口
 Mock.mock('/mock/likes', { code: 200, data: likes })
+
+// 获取用户地址接口
+Mock.mock('/mock/address', { code: 200, data: address })

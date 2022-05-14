@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:31:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 08:55:17
+ * @LastEditTime: 2022-05-13 19:33:51
  * @FilePath: \gshop-client\src\router\routes.js
  * @Description: 
  * 要加油
@@ -59,5 +59,22 @@ export default [
         path: '/shopcart',
         name: 'shopcart',
         component: () => import('../pages/ShopCart')
+    },
+    {
+        path: '/trade',
+        name: 'trade',
+        component: () => import('../pages/Trade')
+    },
+    {
+        path: '/pay',
+        name: 'pay',
+        component: () => import('../pages/Pay')
+    },
+    {
+        path: '/center',
+        name: 'center',
+        component: () => import('../pages/Center')
     }
+
+
 ]

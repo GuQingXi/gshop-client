@@ -2,8 +2,8 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:12:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-13 19:35:13
- * @FilePath: \gshop-client\src\router\index.js
+ * @LastEditTime: 2022-05-12 20:25:36
+ * @FilePath: \gshop-client\src\router\index copy.js
  * @Description: 
  * 要加油
  * 归属于顾清曦
@@ -60,53 +60,42 @@ const router = new VueRouter({
     },
 })
 
+// 全局路由守卫 验证token
 router.beforeEach(async (to, from, next) => {
-    // 全局前置导航守卫 to准备去的路由对象  from 从哪个路由对象来
-    // next是个函数 next()表示无条件放行 next(false)代表不放行，停在原地  
-    // next('/') next({path:'/'})代表最终让他去哪
 
-    // token校验
-    // 首先先拿到token
+    // 首先获取到token
     let token = store.state.user.token
-    console.log(to)
-    // 如果token存在
     if (token) {
-        // 代表登录了或者之前登录了
+        // 有token用户点击登录页就跳转到首页
         if (to.path === '/login') {
-            // 登录过了，又想去登录页 直接跳转首页
             next('/')
-            console.log('你已经登录不能再去登录页面')
         } else {
-            // 判断如果有用户数据就不需要再次去获取了
-            // 如果有数据返回true 没影响 如果没数据 返回undefined !undefined =true !!undefined=false
-            // let hasUserInfo= !!store.state.user.userInfo.nickName
-            let hasUserInfo = store.state.user.userInfo
-            if (!Object.keys(hasUserInfo).length === 0) {
-                // 用户信息存在 代表登录无条件放行
-                console.log('信息存在')
+            // 如果有信息则不用获取 这里初始值是个空对象 !!{}为true
+            let userInfo = !!store.state.user.userInfo.nickName
+            if (userInfo) {
+                // 此判断代表有用户数据
                 next()
             } else {
-                // 此时代表登录了，去的不是登录页 那我们要根据token发请求获取用户的真正信息
+                // 没有用户信息 
+                // 获取用户的详细信息
                 try {
                     await store.dispatch('getTokenUserInfo')
-                    console.log('获取你的信息')
                     next()
                 } catch (error) {
-                    // 这里处理的是token过期和获取用户失败的
-                    alert('请重新登录')
-                    // 调用vuex中的方法 清除token和用户信息
+                    // 如果获取失败
+                    alert('登录失效')
+                    // 删除localStorage里面的token
                     store.dispatch('resetUserInfo')
-                    // 去到之前想去但是没有去成的地方 需要和登录逻辑去配合使用
-                    next('/login?redirect=' + to.path)
+                    // 跳转到登录页面 携带用户想要跳转的信息 等用户登录过后自动跳转相对页面
+                    next('/login?redirect' + to.path)
                 }
             }
         }
     } else {
-        // 代表用户没登录或者之前没登录
-        // 后期我们需要判断用户是不是去订单相关的页面，如果是那么就先登录
+        // 代表用户没登录
+        // 判断如果不进订单页 用户可以随便浏览 
         next()
     }
-
 })
 
 export default router
