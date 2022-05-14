@@ -2,16 +2,16 @@
  * @Author: 顾清曦
  * @Date: 2022-05-10 19:00:45
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 09:48:55
+ * @LastEditTime: 2022-05-13 11:10:06
  * @FilePath: \gshop-client\src\store\modules\shopcart.js
  * @Description: 
  * 要加油
  * 归属于顾清曦
  */
-import { reqMockRecomments, reqCartList } from '@/api'
+import { reqMockRecomments, reqCartList, reqUserLogin } from '@/api'
 const state = {
     //购物车列表
-    cartList: []
+    cartList: {}
 }
 const mutations = {
     SET_CART_LIST(state, cartArr) {
@@ -31,11 +31,15 @@ const actions = {
         const cartArr = await reqCartList()
         console.log(cartArr)
         if (cartArr.code === 200) {
-            commit('SET_CART_LIST', cartArr.data)
+            commit('SET_CART_LIST', cartArr.data[0])
         }
+    },
+}
+const getters = {
+    cartList(state) {
+        return state.cartList.cartInfoList || []
     }
 }
-const getters = {}
 
 export default {
     state,

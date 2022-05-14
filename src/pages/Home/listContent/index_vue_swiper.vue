@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 17:37:49
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 11:55:02
+ * @LastEditTime: 2022-05-11 12:50:51
  * @FilePath: \gshop-client\src\pages\Home\listContent\index_vue_swiper.vue
  * @Description: 
  * 要加油
@@ -100,7 +100,6 @@ import { mapState } from "vuex";
 export default {
   name: "listContent",
   data() {
-    loop;
     return {
       swiperOptions: {
         // direction: "vertical", // 垂直切换选项

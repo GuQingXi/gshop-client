@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 19:58:19
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 11:12:42
+ * @LastEditTime: 2022-05-13 16:43:06
  * @FilePath: \gshop-client\src\api\index.js
  * @Description
  * 要加油
@@ -65,7 +65,73 @@ export function reqCartList() {
         method: 'GET',
     })
 }
+// 用户注册 /api/user/passport/register
+export function reqUserInfo(userInfo) {
+    return request({
+        url: "/user/passport/register",
+        method: 'POST',
+        data: userInfo
+    })
+}
+// 获取验证码
+export function reqCode(phone) {
+    return request({
+        url: `/user/passport/sendCode/${phone}`,
+        method: 'GET'
+    })
+}
+// 获取用户登录信息
+export function reqUserLogin(userInfo) {
+    return request({
+        url: '/user/passport/login',
+        method: 'POST',
+        data: userInfo,
+    })
+}
 
+// 根据token获取用户信息
+// user/passport/auth/getUserInfo
+export const reqTokenUserInfo = () => {
+    return request({
+        url: '/user/passport/auth/getUserInfo',
+        method: 'GET'
+    })
+}
+
+// 退出登录
+export const reqUserLogout = () => {
+    return request({
+        url: '/user/passport/logout',
+        method: 'GET'
+    })
+}
+
+
+// 获取订单信息
+export const reqTraderInfo = () => {
+    return request({
+        url: '/order/auth/trade',
+        method: 'GET'
+    })
+}
+
+// 提交订单
+export const reqPay = (tradNo, tradData) => {
+    // /order/auth/submitOrder?tradeNo={tradeNo}
+    return request({
+        url: '/order/auth/submitOrder?tradeNo=' + tradNo,
+        method: 'POST',
+        data: tradData,
+    })
+}
+
+// 获取支付信息 /payment/weixin/createNative/{orderId}
+export const reqPayInfo = (orderId) => {
+    return request({
+        url: `/payment/weixin/createNative/${orderId}`,
+        method: 'GET'
+    })
+}
 
 // mock接口函数
 export const reqMockRecomments = () => {
@@ -83,4 +149,8 @@ export const reqMockRans = () => {
 }
 export const reqMockLikes = () => {
     return MockAjax('/likes')
+}
+
+export const reqMockAddress = () => {
+    return MockAjax('/address')
 }

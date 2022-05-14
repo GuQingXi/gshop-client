@@ -2,6 +2,7 @@
 node_modules
 /dist
 静态
+/Communent
 
 # local env files
 .env.local

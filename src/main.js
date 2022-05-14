@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 11:34:12
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-08 22:51:32
+ * @LastEditTime: 2022-05-13 18:04:33
  * @FilePath: \gshop-client\src\main.js
  * @Description: 
  * 要加油
@@ -23,6 +23,9 @@ import './plugins/swiper'
 // 引入mock数据
 import '@/mock/mockServer'
 
+import * as API from '@/api'
+// 引入element ui
+import "@/plugins/element"
 
 
 Vue.config.productionTip = false
@@ -35,6 +38,8 @@ new Vue({
   beforeCreate() {
     // 创建或指定事件总线对象，保存到Vue的原型上
     Vue.prototype.$bus = this
+    // 当不使用vuex的时候，可以把接口函数全部装在对象当中挂在Vue原型身上
+    Vue.prototype.$api = API
   },
   render: h => h(App),
   store,
