@@ -124,6 +124,13 @@ export default {
         showCancelButton: true,
         cancelButtonText: "支付遇到问题",
         confirmButtonText: "我已支付完成",
+        callback: () => {
+          this.$message({
+            type: "success",
+            message: "支付成功",
+          });
+          this.$router.push("/center");
+        },
       });
     },
   },

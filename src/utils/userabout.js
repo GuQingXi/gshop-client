@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-11 10:06:29
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-11 20:33:28
+ * @LastEditTime: 2022-05-16 21:32:49
  * @FilePath: \gshop-client\src\utils\userabout.js
  * @Description: 
  * 要加油
@@ -37,6 +37,16 @@ function getToken() {
 function removeToken() {
     localStorage.removeItem(TOKEN_KEY)
 }
+
+// 将用户信息存入localStorage
+function setLocUserInfo(userInfo) {
+    localStorage.setItem(USERINFO, userInfo)
+}
+// 读取
+function getLocUserInfo() {
+    return localStorage.getItem(JSON.stringify(USERINFO))
+}
 export {
-    getUserTempId, setToken, getToken, removeToken
+    getUserTempId, setToken, getToken, removeToken, setLocUserInfo,
+    getLocUserInfo
 }
