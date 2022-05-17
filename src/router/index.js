@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 12:12:33
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-13 19:35:13
+ * @LastEditTime: 2022-05-16 22:03:53
  * @FilePath: \gshop-client\src\router\index.js
  * @Description: 
  * 要加油
@@ -12,6 +12,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
 import store from '@/store'
+
+const that = new Vue()//拿到this
+
 Vue.use(VueRouter)
 
 // 缓存原本的push方法
@@ -89,6 +92,7 @@ router.beforeEach(async (to, from, next) => {
                 // 此时代表登录了，去的不是登录页 那我们要根据token发请求获取用户的真正信息
                 try {
                     await store.dispatch('getTokenUserInfo')
+                    // 将用户信息放入localStorage中
                     console.log('获取你的信息')
                     next()
                 } catch (error) {
@@ -104,6 +108,12 @@ router.beforeEach(async (to, from, next) => {
     } else {
         // 代表用户没登录或者之前没登录
         // 后期我们需要判断用户是不是去订单相关的页面，如果是那么就先登录
+
+        // 交易相关的 订单相关的 支付相关的 用户中心相关的 都要登录才能访问
+        if (to.path === '/pay' || to.path === '/trade' || to.path === '/center') {
+            that.$message.error('请登录');
+            next('/login?redirect=' + to.path);
+        }
         next()
     }
 

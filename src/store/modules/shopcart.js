@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-10 19:00:45
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-13 11:10:06
+ * @LastEditTime: 2022-05-17 00:09:37
  * @FilePath: \gshop-client\src\store\modules\shopcart.js
  * @Description: 
  * 要加油
@@ -37,7 +37,7 @@ const actions = {
 }
 const getters = {
     cartList(state) {
-        return state.cartList.cartInfoList || []
+        return state.cartList.cartInfoList || {}
     }
 }
 

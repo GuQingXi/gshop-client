@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-07 13:46:28
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-12 19:09:09
+ * @LastEditTime: 2022-05-16 21:37:25
  * @FilePath: \gshop-client\src\store\modules\user.js
  * @Description: 
  * 要加油
@@ -11,7 +11,7 @@
 /*
 管理登录用户数据的vuex子模块
 */
-import { getUserTempId, getToken, setToken, removeToken } from '@/utils/userabout'
+import { getUserTempId, getToken, setToken, removeToken, getLocUserInfo, setLocUserInfo } from '@/utils/userabout'
 import { reqUserInfo, reqCode, reqUserLogin, reqTokenUserInfo, reqUserLogout } from '@/api'
 
 const state = {

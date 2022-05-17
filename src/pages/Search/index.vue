@@ -95,7 +95,7 @@
                   <div class="p-img">
                     <!-- <router-link :to="'/detail/' + item.id"> -->
                     <a href="javascript:;" @click="toDetail(item.id)">
-                      <img :src="item.defaultImg" />
+                      <img v-lazy="item.defaultImg" />
                     </a>
                     <!-- </router-link> -->
                   </div>

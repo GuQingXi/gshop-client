@@ -2,7 +2,7 @@
  * @Author: 顾清曦
  * @Date: 2022-05-04 11:34:12
  * @LastEditors: 顾清曦
- * @LastEditTime: 2022-05-13 18:04:33
+ * @LastEditTime: 2022-05-17 10:17:24
  * @FilePath: \gshop-client\src\main.js
  * @Description: 
  * 要加油
@@ -26,6 +26,16 @@ import '@/mock/mockServer'
 import * as API from '@/api'
 // 引入element ui
 import "@/plugins/element"
+
+// 安装vue-lazylodash
+import VueLazylodash from 'vue-lazyload'
+
+Vue.use(VueLazylodash, {
+  preLoad: 1,
+  error: require('./assets/loading.gif'),//错误展示的图片
+  loading: require('./assets/loading2.gif'),//加载图片
+  attempt: 1
+})
 
 
 Vue.config.productionTip = false
